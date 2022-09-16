@@ -5,13 +5,19 @@ const JUMP_POWER: int = 250
 const ANGULAR_SPEED: float = PI * 1.75
 const KNOCKBACK_STRENGTH: int = -160
 const SLIDE_FACTOR: float = 0.1
-
+const SPREAD: float = 0.02
 var velocity: Vector2 = Vector2.ZERO
 var can_shoot: bool = true
+var shot_amount: int = 5
 
 onready var shell: PackedScene = preload("res://assets/particles/shell_particle.tscn")
+onready var bullet: PackedScene = preload("res://actors/Bullet.tscn")
 onready var shell_eject: Position2D = $Arms/ShellEject
+onready var shoot_point: Position2D = $Arms/ShootPoint
 
+
+func _ready() -> void:
+	randomize()
 
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
@@ -45,6 +51,11 @@ func get_input(delta: float) -> void:
 		velocity += knockback * KNOCKBACK_STRENGTH
 		$ShotDelay.start()
 		$ShellEjectTimer.start()
+		for i in shot_amount:
+			if i == 0:
+				spawn_bullet(true)
+			else:
+				spawn_bullet()
 
 
 func jump() -> void:
@@ -73,6 +84,17 @@ func spawn_shell():
 	if $Arms.flip_v == true:
 		shell_instance.direction.y = shell_instance.direction.y * -1
 	shell_instance.emitting = true
+
+
+func spawn_bullet(first_shot: bool = false):
+	var bullet_instance: KinematicBody2D = bullet.instance()
+	owner.add_child(bullet_instance)
+	bullet_instance.rotation = $Arms.rotation + rotation 
+	if not first_shot:
+		bullet_instance.rotation += (randf() * 2 -1) * SPREAD
+	bullet_instance.position = shoot_point.global_position
+	bullet_instance.align()
+	
 	
 
 func _on_ShotDelay_timeout() -> void:
