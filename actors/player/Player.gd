@@ -9,11 +9,15 @@ const SPREAD: float = 0.02
 var velocity: Vector2 = Vector2.ZERO
 var can_shoot: bool = true
 var shot_amount: int = 5
+var SCREEN_X = ProjectSettings.get_setting("display/window/size/width")
+var SCREEN_Y = ProjectSettings.get_setting("display/window/size/height")
 
 onready var shell: PackedScene = preload("res://assets/particles/shell_particle.tscn")
 onready var bullet: PackedScene = preload("res://actors/Bullet.tscn")
 onready var shell_eject: Position2D = $Arms/ShellEject
 onready var shoot_point: Position2D = $Arms/ShootPoint
+
+
 
 
 func _ready() -> void:
@@ -24,6 +28,7 @@ func _physics_process(delta: float) -> void:
 	aim_gun()
 	get_input(delta)
 	decide_to_jump()
+	offset_cam_with_mouse()
 	
 	velocity = move_and_slide(velocity, Vector2.UP, false, 4, 2 * PI)
 	
@@ -95,7 +100,12 @@ func spawn_bullet(first_shot: bool = false):
 	bullet_instance.position = shoot_point.global_position
 	bullet_instance.align()
 	
-	
+
+func offset_cam_with_mouse() -> void:
+	var mouse_pos: Vector2 = get_global_mouse_position()
+	$Camera2D.offset.y = lerp($Camera2D.offset.y, (mouse_pos.y - global_position.y) / (SCREEN_Y / 50) - 20, 0.2)
+	$Camera2D.offset.x = lerp($Camera2D.offset.x, (mouse_pos.x - global_position.x) / (SCREEN_X / 50), 0.2)
+
 
 func _on_ShotDelay_timeout() -> void:
 	can_shoot = true

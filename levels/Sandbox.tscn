@@ -12,6 +12,8 @@ position = Vector2( 147, 117 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( -145, -279 )
+collision_layer = 4
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 402, 457 )
@@ -20,6 +22,8 @@ shape = SubResource( 1 )
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2( 431, -379 )
 rotation = 1.57108
+collision_layer = 4
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2( 402, 457 )
@@ -28,6 +32,8 @@ shape = SubResource( 1 )
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 position = Vector2( 742, -360 )
 rotation = 1.57458
+collision_layer = 4
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 position = Vector2( 402, 457 )

@@ -11,4 +11,3 @@ func _physics_process(delta: float) -> void:
 
 func align() -> void:
 	dir = Vector2.RIGHT.rotated(rotation)
-	print(rotation)
