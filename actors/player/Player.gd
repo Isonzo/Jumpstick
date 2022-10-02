@@ -51,14 +51,14 @@ func get_input(delta: float) -> void:
 	rotate(ANGULAR_SPEED * dir * delta)
 	
 	if Input.is_action_just_pressed("shoot") and can_shoot:
-		can_shoot = false
+		can_shoot = false #Will be set to true after $ShotDelay ends
 		var knockback: Vector2 = Vector2.UP.rotated(rotation + $Arms.rotation + PI/2).normalized()
 		velocity += knockback * KNOCKBACK_STRENGTH
 		$ShotDelay.start()
-		$ShellEjectTimer.start()
+		$ShellEjectTimer.start() #wait 0.3 to eject shell
 		for i in shot_amount:
 			if i == 0:
-				spawn_bullet(true)
+				spawn_bullet(true) #true param means perfect aim
 			else:
 				spawn_bullet()
 
