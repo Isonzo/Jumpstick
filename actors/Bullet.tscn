@@ -1,14 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://actors/Bullet.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 1.41421
-
-[sub_resource type="Gradient" id=1]
-interpolation_mode = 1
-offsets = PoolRealArray( 0.280303, 0.484848 )
-colors = PoolColorArray( 0.980469, 1, 0, 1, 1, 1, 1, 1 )
 
 [node name="Bullet" type="KinematicBody2D"]
 collision_layer = 2
@@ -19,8 +14,9 @@ script = ExtResource( 1 )
 shape = SubResource( 2 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-lifetime = 0.05
+amount = 4
+lifetime = 0.08
 local_coords = false
 direction = Vector2( 0, 0 )
 gravity = Vector2( 0, 0 )
-color_ramp = SubResource( 1 )
+color = Color( 0.819608, 0.74902, 0.690196, 1 )
