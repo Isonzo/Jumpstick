@@ -22,6 +22,7 @@ onready var shoot_point: Position2D = $Arms/ShootPoint
 
 func _ready() -> void:
 	randomize()
+	Globals.player = self
 
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
