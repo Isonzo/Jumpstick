@@ -98,8 +98,9 @@ func spawn_bullet(first_shot: bool = false):
 	bullet_instance.rotation = $Arms.rotation + rotation 
 	if not first_shot:
 		bullet_instance.rotation += (randf() * 2 -1) * SPREAD
-	bullet_instance.position = shoot_point.global_position
 	bullet_instance.align()
+	bullet_instance.global_position = shoot_point.global_position
+
 	
 
 func offset_cam_with_mouse() -> void:
