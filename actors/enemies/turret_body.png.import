@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/turret_body.png-54274beac59cd7f1de08d6dc04f4f88e.stex"
+path="res://.import/turret_body.png-8b5b8ba9c7d86cad5a9b3e9a387a0814.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/turret_body.png"
-dest_files=[ "res://.import/turret_body.png-54274beac59cd7f1de08d6dc04f4f88e.stex" ]
+source_file="res://actors/enemies/turret_body.png"
+dest_files=[ "res://.import/turret_body.png-8b5b8ba9c7d86cad5a9b3e9a387a0814.stex" ]
 
 [params]
 

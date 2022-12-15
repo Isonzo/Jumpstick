@@ -17,7 +17,7 @@ func _ready() -> void:
 	player = Globals.player
 
 
-func _physics_process(delta) -> void:
+func _physics_process(_delta) -> void:
 	take_aim()
 	if (seeing_player()) and $ReloadTimer.time_left == 0:
 		$ReloadTimer.start()
