@@ -22,6 +22,7 @@ onready var shoot_point: Position2D = $Arms/ShootPoint
 
 func _ready() -> void:
 	randomize()
+	Globals.player = self
 
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
@@ -93,12 +94,14 @@ func spawn_shell():
 
 func spawn_bullet(first_shot: bool = false):
 	var bullet_instance: KinematicBody2D = bullet.instance()
+	bullet_instance.set_collision_mask_bit(1, false)
 	owner.add_child(bullet_instance)
 	bullet_instance.rotation = $Arms.rotation + rotation 
 	if not first_shot:
 		bullet_instance.rotation += (randf() * 2 -1) * SPREAD
-	bullet_instance.position = shoot_point.global_position
 	bullet_instance.align()
+	bullet_instance.global_position = shoot_point.global_position
+
 	
 
 func offset_cam_with_mouse() -> void:
@@ -113,3 +116,7 @@ func _on_ShotDelay_timeout() -> void:
 
 func _on_ShellEjectTimer_timeout() -> void:
 	spawn_shell()
+
+
+func get_hit():
+	print("Ow!")
