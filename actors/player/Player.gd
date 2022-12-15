@@ -94,6 +94,7 @@ func spawn_shell():
 
 func spawn_bullet(first_shot: bool = false):
 	var bullet_instance: KinematicBody2D = bullet.instance()
+	bullet_instance.set_collision_mask_bit(1, false)
 	owner.add_child(bullet_instance)
 	bullet_instance.rotation = $Arms.rotation + rotation 
 	if not first_shot:
@@ -115,3 +116,7 @@ func _on_ShotDelay_timeout() -> void:
 
 func _on_ShellEjectTimer_timeout() -> void:
 	spawn_shell()
+
+
+func get_hit():
+	print("Ow!")

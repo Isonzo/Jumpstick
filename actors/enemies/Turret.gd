@@ -49,3 +49,7 @@ func seeing_player() -> bool:
 
 func _on_ReloadTimer_timeout() -> void:
 	shoot()
+
+
+func get_hit():
+	print("I am a shot machine")
